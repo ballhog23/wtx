@@ -1,0 +1,40 @@
+{
+  "name": "wtx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist public/js",
+    "build:server": "tsc -p tsconfig.json",
+    "build:client": "tsc -p tsconfig.web.json --noEmit && esbuild public-ts/*.ts --bundle --minify --outdir=public/js --format=esm",
+    "build:scss": "sass public/scss:public/css --no-source-map --style=compressed",
+    "watch:server": "tsc -p tsconfig.json --watch",
+    "watch:client": "esbuild public-ts/*.ts --bundle --outdir=public/js --format=esm --watch",
+    "watch:scss": "sass public/scss:public/css --watch --no-source-map",
+    "dev:server": "node --watch dist/server.js",
+    "build": "npm run clean && npm run build:server && npm run build:client && npm run build:scss",
+    "dev": "npm run build:server && concurrently \"npm:watch:server\" \"npm:watch:client\" \"npm:watch:scss\" \"npm:dev:server\"",
+    "start": "node dist/server.js",
+    "prod": "pm2 start dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "compression": "^1.8.1",
+    "express": "^5.2.1",
+    "pug": "^3.0.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.0",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.27.3",
+    "sass": "^1.97.3",
+    "typescript": "^5.9.3"
+  }
+}

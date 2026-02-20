@@ -1,0 +1,124 @@
+@use '../variables' as *;
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: blue;
+    border-bottom: 1px solid yellow;
+    height: 5rem;
+
+    >.container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
+    .brand {
+        font-family: $font-heading;
+        font-size: rem(20);
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+
+        &:hover {
+            color: yellow;
+        }
+
+        @media only screen and (min-width: $md-breakpoint-up) {
+            font-size: rem(24);
+        }
+    }
+
+    .nav-links {
+        display: none;
+        list-style: none;
+
+        @media only screen and (min-width: $md-breakpoint-up) {
+            display: flex;
+            justify-content: flex-end;
+            gap: rem(24);
+        }
+
+        .nav-link {
+            font-size: rem(16);
+            font-weight: $font-weight-medium;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color $transition;
+            display: flex;
+            height: 100%;
+            align-items: center;
+
+            &:hover {
+                color: yellow;
+            }
+
+            &.current-page {
+                color: yellow;
+            }
+        }
+    }
+
+    .hamburger {
+        height: rem(36);
+        width: rem(36);
+        position: relative;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: 1px solid white;
+            outline-offset: 2px;
+        }
+
+        @media only screen and (min-width: $md-breakpoint-up) {
+            display: none;
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            left: rem(4);
+            right: rem(4);
+            height: 2px;
+            background-color: yellow;
+            transition: transform $transition, opacity $transition;
+
+            &:first-of-type {
+                top: rem(8);
+            }
+
+            &:nth-of-type(2) {
+                top: rem(17);
+            }
+
+            &:nth-of-type(3) {
+                top: rem(26);
+            }
+        }
+
+        &.open span {
+            &:first-of-type {
+                transform: translateY(rem(9)) rotate(45deg);
+            }
+
+            &:nth-of-type(2) {
+                opacity: 0;
+            }
+
+            &:nth-of-type(3) {
+                transform: translateY(rem(-9)) rotate(-45deg);
+            }
+        }
+    }
+}

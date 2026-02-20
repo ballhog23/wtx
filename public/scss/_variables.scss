@@ -1,0 +1,29 @@
+$black: #000000;
+$transition: 0.3s ease;
+
+@font-face {
+    font-family: '';
+    src: url('/fonts/.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+$font-body: sans-serif;
+$font-heading: serif;
+$font-weight-thin: 200;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+// Breakpoints
+$xs-breakpoint-up: 375px;
+$sm-breakpoint-up: 576px;
+$md-breakpoint-up: 768px;
+$lg-breakpoint-up: 992px;
+$xl-breakpoint-up: 1200px;
+$xxl-breakpoint-up: 1400px;
+
+
+@function rem($px) {
+    @return calc($px / 16) * 1rem;
+}
