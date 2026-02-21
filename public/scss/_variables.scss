@@ -1,20 +1,81 @@
+@use 'sass:color';
+
 $black: #000000;
+$white: #ffffff;
+$text-muted: color.adjust($white, $alpha: 0.7);
+$slate: #0f172a;
+$glass-bg: color.adjust($white, $alpha: 0.5);
+$glass-bg-border: color.adjust($white, $alpha: 0.1);
+$social-card-bg: color.adjust($slate, $alpha: 0.8);
+$blue: #2563eb;
+$bright-blue: color.adjust($blue, $lightness: 20%);
+$dark-blue: color.adjust($blue, $lightness: -20%);
+$yellow: #FACC15;
+$bright-yellow: color.adjust($yellow, $lightness: 20%);
+$dark-yellow: color.adjust($yellow, $lightness: -20%);
+$red: #EF4444;
+$bright-red: color.adjust($red, $lightness: 20%);
+$dark-red: color.adjust($red, $lightness: -20%);
+$button-gradient: linear-gradient(to right,
+		$red,
+		$blue);
+
+$button-gradient-dark: linear-gradient(to right,
+		$dark-red,
+		$dark-blue);
+$button-gradient-red: linear-gradient(to right,
+		$red,
+		$dark-red);
+
+$button-gradient-blue: linear-gradient(to right,
+		$blue,
+		$dark-blue);
+
+$button-gradient-yellow: linear-gradient(to right,
+		$yellow,
+		$dark-yellow);
+
+$card-glow-gradient: linear-gradient(to right,
+		color.adjust($red, $alpha: 0.3),
+		color.adjust($yellow, $alpha: 0.3),
+		color.adjust($blue, $alpha: 0.3));
+
+$text-gradient: linear-gradient(to right,
+		$red 0%,
+		$white 40%,
+		$white 70%,
+		$blue 100%);
+
 $transition: 0.3s ease;
+$filter-blur: blur(0.25rem);
+$backdrop-blur: blur(0.25rem);
+
+
 
 @font-face {
-    font-family: '';
-    src: url('/fonts/.woff2') format('woff2');
-    font-weight: 100 900;
-    font-display: swap;
+	font-family: "Inter", sans-serif;
+	src: url('/fonts/inter/inter-variable.woff2') format('woff2');
+	font-display: swap;
+	font-optical-sizing: auto;
+	font-style: normal;
 }
 
-$font-body: sans-serif;
-$font-heading: serif;
+@font-face {
+	font-family: "Noto Sans", sans-serif;
+	src: url('/fonts/inter/noto-normal.woff2') format('woff2');
+	font-display: swap;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
+
+$font-body: "Inter", system-ui, sans-serif;
+$font-heading: "Noto Sans", system-ui, sans-serif;
 $font-weight-thin: 200;
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
+$font-weight-black: 900;
 // Breakpoints
 $xs-breakpoint-up: 375px;
 $sm-breakpoint-up: 576px;
@@ -25,5 +86,36 @@ $xxl-breakpoint-up: 1400px;
 
 
 @function rem($px) {
-    @return calc($px / 16) * 1rem;
+	@return calc($px / 16) * 1rem;
+}
+
+@keyframes gradient-shift {
+	0% {
+		background-position: 0% center;
+	}
+
+	50% {
+		background-position: 100% center;
+	}
+
+	100% {
+		background-position: 0% center;
+	}
+}
+
+
+@mixin glow($color) {
+	@keyframes glow-#{$color} {
+
+		0%,
+		100% {
+			filter: drop-shadow(0 0 6px #{color.change($color, $alpha: 0.2)});
+		}
+
+		50% {
+			filter: drop-shadow(0 0 18px #{color.change($color, $alpha: 0.6)});
+		}
+	}
+
+	animation: glow-#{$color} 4s ease infinite;
 }

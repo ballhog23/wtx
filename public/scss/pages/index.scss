@@ -1,1 +1,21 @@
-@use '../_base';
+@use '../_base' as *;
+
+h1 {
+    span {
+        color: transparent;
+        background-image: $text-gradient;
+        -webkit-background-clip: text;
+        background-clip: text;
+        display: inline-block;
+        -webkit-text-fill-color: transparent;
+        font-size: 2rem;
+
+        @media only screen and (min-width: $sm-breakpoint-up) {
+            font-size: 2.5rem;
+        }
+
+        @media only screen and (min-width: $md-breakpoint-up) {
+            font-size: 4.5rem;
+        }
+    }
+}
