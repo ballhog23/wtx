@@ -6,7 +6,6 @@ import { BadRequestError, ServiceUnavailableError } from "../lib/errors.js";
 
 
 const createSendEmailCommand = (toAddress: string, fromAddress: string, data: ContactFormSchema) => {
-    console.log(data);
     return new SendEmailCommand({
         Destination: {
             BccAddresses: [],
