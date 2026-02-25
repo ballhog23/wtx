@@ -1,5 +1,9 @@
 footer.site-footer
-    .container
-        .footer-bottom
-            #{new Date().getFullYear()} Made with ❤️ 
-                a(href='https://calebpirkle.com') by Caleb Pirkle
+	.container
+		.site-footer__brand
+			span.brand__name WTX WAX
+			span.brand__sub Collectibles
+		nav.site-footer__nav(aria-label="Footer navigation")
+			a(href="/about") About
+			a(href="/contact") Contact
+		p.site-footer__copy &copy; #{new Date().getFullYear()} WTX Wax Collectibles

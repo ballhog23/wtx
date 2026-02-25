@@ -8,3 +8,6 @@ html(lang="en-US")
 		include ../partials/nav-overlay.pug
 		block content
 		include ../partials/footer.pug
+		include ../mixins/icons
+		button.scroll-to-top.scroll-btn-hidden(type="button" aria-label="Scroll to top")
+			+iconChevronUp()

@@ -20,8 +20,10 @@ export function initScrollToTop(): void {
 
     const buttonVisibility: IntersectionObserverCallback = (entries) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) scrollToTopButton.classList.remove('hidden');
-            else scrollToTopButton.classList.add('hidden');
+            if (!entry.isIntersecting)
+                scrollToTopButton.classList.remove('scroll-btn--hidden');
+            else
+                scrollToTopButton.classList.add('scroll-btn--hidden');
         });
     };
 

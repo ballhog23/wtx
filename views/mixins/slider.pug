@@ -1,0 +1,26 @@
+include ./icons
+
+//- Base reusable slider mixin (no pills)
+//- slides: array of { image, alt, badge, title, description, href, btnText, accentClass }
+mixin slider(slides)
+	.slider
+		.swiper
+			.swiper-wrapper
+				each slide in slides
+					.swiper-slide
+						.slider__slide
+							.slider__image
+								img(src=slide.image alt=slide.alt loading="lazy" decoding="async" fetchpriority="low")
+								.swiper-lazy-preloader.swiper-lazy-preloader-white
+								if slide.badge
+									span.slider__badge
+										+iconFlame()
+										| #{slide.badge}
+							.slider__body
+								h3 #{slide.title}
+								p #{slide.description}
+								if slide.href
+									a.btn.btn--primary(href=slide.href) #{slide.btnText || 'View Collection'}
+			button.swiper-button-prev(aria-label="Previous slide")
+			button.swiper-button-next(aria-label="Next slide")
+		.swiper-pagination

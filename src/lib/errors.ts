@@ -25,3 +25,10 @@ export class NotFoundError extends Error {
 		super(message);
 	}
 }
+
+export class ServiceUnavailableError extends Error {
+	statusCode = 503;
+	constructor(message: string) {
+		super(message);
+	}
+}

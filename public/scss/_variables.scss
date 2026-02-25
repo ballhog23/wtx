@@ -2,11 +2,12 @@
 
 $black: #000000;
 $white: #ffffff;
-$text-muted: color.adjust($white, $alpha: 0.7);
+$text-muted: color.adjust($white, $alpha: -0.3);
 $slate: #0f172a;
-$glass-bg: color.adjust($white, $alpha: 0.5);
-$glass-bg-border: color.adjust($white, $alpha: 0.1);
-$social-card-bg: color.adjust($slate, $alpha: 0.8);
+$glass-bg: color.adjust($white, $alpha: -0.95);
+$glass-bg-border: color.adjust($white, $alpha: -0.9);
+$glass-bg-hover: color.adjust($white, $alpha: -0.8);
+$social-card-bg: color.adjust($slate, $alpha: -0.2);
 $blue: #2563eb;
 $bright-blue: color.adjust($blue, $lightness: 20%);
 $dark-blue: color.adjust($blue, $lightness: -20%);
@@ -16,35 +17,36 @@ $dark-yellow: color.adjust($yellow, $lightness: -20%);
 $red: #EF4444;
 $bright-red: color.adjust($red, $lightness: 20%);
 $dark-red: color.adjust($red, $lightness: -20%);
-$button-gradient: linear-gradient(to right,
-		$red,
-		$blue);
 
 $button-gradient-dark: linear-gradient(to right,
-		$dark-red,
-		$dark-blue);
-$button-gradient-red: linear-gradient(to right,
-		$red,
-		$dark-red);
+		$dark-red 0%,
+		color.mix($dark-blue, $dark-red, 25%) 30%,
+		color.mix($dark-blue, $dark-red, 50%) 50%,
+		color.mix($dark-blue, $dark-red, 75%) 70%,
+		$dark-blue 100%);
 
-$button-gradient-blue: linear-gradient(to right,
-		$blue,
-		$dark-blue);
+$button-gradient-red: linear-gradient(to right,
+		$red 0%,
+		color.mix($dark-red, $red, 35%) 40%,
+		color.mix($dark-red, $red, 70%) 70%,
+		$dark-red 100%);
+
 
 $button-gradient-yellow: linear-gradient(to right,
-		$yellow,
-		$dark-yellow);
+		$yellow 0%,
+		color.mix($dark-yellow, $yellow, 35%) 40%,
+		color.mix($dark-yellow, $yellow, 70%) 70%,
+		$dark-yellow 100%);
 
 $card-glow-gradient: linear-gradient(to right,
-		color.adjust($red, $alpha: 0.3),
-		color.adjust($yellow, $alpha: 0.3),
-		color.adjust($blue, $alpha: 0.3));
+		color.change($dark-red, $alpha: 0.3),
+		color.change($yellow, $alpha: 0.3),
+		color.change($dark-blue, $alpha: 0.3));
 
-$text-gradient: linear-gradient(to right,
-		$red 0%,
-		$white 40%,
-		$white 70%,
-		$blue 100%);
+$text-gradient-glow: linear-gradient(to right, $red, $yellow, $blue);
+
+$tiktok-cyan: #00F2EA;
+$tiktok-red: #FF0050;
 
 $transition: 0.3s ease;
 $filter-blur: blur(0.25rem);

@@ -2,8 +2,10 @@ import express from 'express';
 import compression from "compression";
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { webRouter } from './routes/web/index.js';
+import { apiContactRoute } from './routes/api/contact-route.js';
 import { errorHandler } from './middleware/error-handler.js';
-import { webIndexRoute } from './routes/web/index.js';
+import { handlerServeNotFound } from "./web/not-found.js";
 import { handlerServeErrorPage } from './web/error-page.js';
 
 const app = express();
@@ -21,10 +23,15 @@ app.set("view engine", "pug");
 app.set("views", join(__dirname, "../views"));
 
 // web views
-app.use("/", webIndexRoute);
+app.use("/", webRouter);
+
+// contact form api
+app.use("/api/contact", apiContactRoute);
 
 // if api error
 app.use(errorHandler);
+// specifically catches 404
+app.use(handlerServeNotFound);
 // any other errors
 app.use(handlerServeErrorPage);
 

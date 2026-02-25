@@ -1,0 +1,31 @@
+include ../mixins/icons
+
+section.social
+	.container
+		.social__card
+			.card-glow
+			header.section-header
+				h3 JOIN THE <span>COMMUNITY</span>
+				p Follow us for the latest pulls, restocks, and collector content!
+			.social__grid
+				a.social__platform(href="https://instagram.com/wtxwaxcollectibles" target="_blank" rel="noopener noreferrer" data-platform="instagram")
+					.social__icon
+						+iconInstagram()
+					h4 Instagram
+					p 2.5K followers
+					span Follow Us
+				a.social__platform(href="https://tiktok.com/@wtxwaxcollectibles" target="_blank" rel="noopener noreferrer" data-platform="tiktok")
+					.social__icon
+						+iconTiktok()
+					h4 TikTok
+					p 5.1K followers
+					span Follow Us
+				a.social__platform(href="https://facebook.com/wtxwaxcollectibles" target="_blank" rel="noopener noreferrer" data-platform="facebook")
+					.social__icon
+						+iconFacebook()
+					h4 Facebook
+					p 1.8K followers
+					span Follow Us
+			p.social__hashtag
+				| Use our hashtag:&nbsp;
+				strong #WTXWaxPulls

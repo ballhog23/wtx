@@ -2,7 +2,9 @@ import type { Request, Response, NextFunction } from 'express';
 import { respondWithError } from '../lib/json.js';
 
 
-export async function errorHandler(err: Error & { statusCode?: number }, req: Request, res: Response, next: NextFunction) {
+export async function errorHandler(err: Error & { statusCode?: number; }, req: Request, res: Response, next: NextFunction) {
+	console.log('did i make it');
+
 	if (!req.path.startsWith('/api/')) return next(err);
 
 	const statusCode = err.statusCode ?? 500;

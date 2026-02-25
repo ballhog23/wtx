@@ -1,0 +1,66 @@
+@use '../variables' as *;
+@use 'sass:color';
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: rem(8);
+	font-family: $font-body;
+	font-weight: $font-weight-bold;
+	font-size: rem(16);
+	padding: rem(14) rem(32);
+	border-radius: rem(8);
+	border: none;
+	cursor: pointer;
+	transition: all $transition;
+	text-decoration: none;
+
+	svg {
+		width: rem(20);
+		height: rem(20);
+		flex-shrink: 0;
+	}
+
+	&:hover {
+		color: inherit;
+	}
+
+	&--primary {
+		background: linear-gradient(to right,
+				$yellow 0%,
+				$yellow 50%,
+				color.mix($dark-yellow, $yellow, 35%) 65%,
+				color.mix($dark-yellow, $yellow, 70%) 80%,
+				$dark-yellow 100%);
+		background-size: 200% 100%;
+		background-position: 100% center;
+		color: $slate;
+		box-shadow: 0 rem(8) rem(24) color.adjust($yellow, $alpha: -0.7);
+		transition: background-position 0.6s ease, box-shadow $transition;
+
+		&:hover {
+			background-position: 0% center;
+			color: $slate;
+			filter: none;
+		}
+	}
+
+	// Ghost / outline
+	&--outline {
+		background: transparent;
+		color: $yellow;
+		border: 2px solid $yellow;
+
+		&:hover {
+			background: $yellow;
+			color: $slate;
+			filter: none;
+		}
+	}
+
+	// Full width
+	&--block {
+		width: 100%;
+	}
+}

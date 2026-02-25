@@ -1,0 +1,51 @@
+include ../mixins/icons
+
+section.location
+	.container
+		header.section-header
+			p.section-header__eyebrow
+				+iconMapPin()
+				| Visit Us
+			h2 FIND YOUR <span>LOCAL SHOP</span>
+			p Stop by our DFW location and experience the thrill of the hunt in person!
+		.location__grid
+			.location__info
+				.location__details
+					.location__detail
+						.location__detail-icon
+							+iconMapPin()
+						div
+							h4 Store Location
+							p
+								| 123 Main Street
+								br
+								| Fort Worth, TX 79701
+					.location__detail
+						.location__detail-icon
+							+iconClock()
+						div
+							h4 Store Hours
+							dl
+								dt Mon – Fri
+								dd 10AM – 7PM
+								dt Saturday
+								dd 10AM – 6PM
+								dt Sunday
+								dd 12PM – 5PM
+					.location__detail
+						.location__detail-icon
+							+iconPhone()
+						div
+							h4 Contact
+							a(href="tel:+14325551234")
+								+iconPhone()
+								| (432) 555-1234
+							a(href="mailto:info@wtxwax.com")
+								+iconMail()
+								| info@wtxwax.com
+				a.btn.btn--primary(href="https://maps.google.com" target="_blank" rel="noopener noreferrer")
+					+iconNavigation()
+					| Get Directions
+			.location__map
+				.card-glow
+				img(src="https://picsum.photos/seed/map/800/450" alt="Store location map placeholder")

@@ -1,0 +1,38 @@
+@use '../variables' as *;
+
+.scroll-to-top {
+	position: fixed;
+	bottom: rem(32);
+	right: rem(32);
+	z-index: 900;
+	width: rem(48);
+	height: rem(48);
+	border-radius: rem(12);
+	border: 1px solid $glass-bg-border;
+	background: $glass-bg;
+	backdrop-filter: $backdrop-blur;
+	-webkit-backdrop-filter: $backdrop-blur;
+	color: $white;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: opacity $transition, transform $transition, border-color $transition, background $transition;
+
+	svg {
+		width: rem(20);
+		height: rem(20);
+	}
+
+	&:hover {
+		background: $glass-bg-hover;
+		border-color: color-mix(in srgb, #fff 20%, transparent);
+		transform: translateY(rem(-3));
+	}
+
+	&.scroll-btn--hidden {
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(rem(8));
+	}
+}

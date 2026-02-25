@@ -1,0 +1,48 @@
+@use '../_base' as *;
+
+section.cta {
+	.cta__card {
+		position: relative;
+		background-color: $glass-bg;
+		border: 1px solid $glass-bg-border;
+		border-radius: rem(24);
+		padding: rem(48) rem(32);
+		text-align: center;
+
+		@media (min-width: $md-breakpoint-up) {
+			padding: rem(64) rem(80);
+		}
+
+		>svg {
+			width: rem(48);
+			height: rem(48);
+			color: $yellow;
+			margin: 0 auto rem(24);
+			display: block;
+		}
+
+		h2 {
+			font-size: rem(32);
+			margin-bottom: rem(16);
+
+			@media (min-width: $md-breakpoint-up) {
+				font-size: rem(44);
+			}
+		}
+
+		>p {
+			font-size: rem(20);
+			margin-bottom: rem(40);
+			max-width: rem(540);
+			margin-inline: auto;
+			line-height: 1.6;
+		}
+	}
+
+	.cta__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: rem(16);
+	}
+}

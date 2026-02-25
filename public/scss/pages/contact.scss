@@ -1,0 +1,447 @@
+@use '../_base' as *;
+@use 'sass:color';
+@use '../components/btn';
+@use '../components/section-header';
+@use '../components/location';
+@use '../components/scroll-to-top';
+
+// ── Hero (contact variant) ────────────────────────────────────────────────────
+
+@keyframes twinkle {
+	0%, 100% { opacity: 1; }
+	20% { opacity: 0.15; }
+	40% { opacity: 0.9; }
+	65% { opacity: 0.1; }
+	80% { opacity: 1; }
+}
+
+section.hero {
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+
+	.container {
+		position: relative;
+		z-index: 1;
+
+		@media (min-width: $lg-breakpoint-up) {
+			display: block;
+		}
+	}
+
+	.hero__orbs {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+
+		span {
+			position: absolute;
+			border-radius: 50%;
+			filter: blur(rem(60));
+
+			&:nth-child(1) {
+				width: rem(280);
+				height: rem(280);
+				top: rem(-80);
+				left: rem(-80);
+				background: color.adjust($red, $alpha: -0.9);
+			}
+
+			&:nth-child(2) {
+				width: rem(360);
+				height: rem(360);
+				top: rem(-80);
+				right: rem(-80);
+				background: color.adjust($blue, $alpha: -0.9);
+			}
+		}
+	}
+
+	.hero__eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: rem(8);
+		background: color.adjust($yellow, $alpha: -0.9);
+		border: 1px solid color.adjust($yellow, $alpha: -0.7);
+		border-radius: rem(999);
+		padding: rem(6) rem(16);
+		margin-bottom: rem(24);
+		color: $yellow;
+		font-size: rem(14);
+		font-weight: $font-weight-semibold;
+
+		svg {
+			width: rem(16);
+			height: rem(16);
+			flex-shrink: 0;
+			animation: twinkle 1.8s ease-in-out infinite;
+		}
+	}
+
+	p {
+		font-size: rem(18);
+		max-width: rem(640);
+		margin-inline: auto;
+		margin-bottom: 0;
+		line-height: 1.7;
+	}
+
+	.accent-yellow {
+		color: $yellow;
+		font-weight: $font-weight-bold;
+	}
+
+	.accent-red {
+		color: $bright-red;
+		font-weight: $font-weight-bold;
+	}
+
+	.accent-blue {
+		color: $bright-blue;
+		font-weight: $font-weight-bold;
+	}
+}
+
+// ── Contact ───────────────────────────────────────────────────────────────────
+
+section.contact {
+	.contact__grid {
+		display: grid;
+		gap: rem(48);
+
+		@media (min-width: $lg-breakpoint-up) {
+			grid-template-columns: 3fr 2fr;
+			align-items: stretch;
+		}
+	}
+
+	.contact__form-card {
+		position: relative;
+		background: $glass-bg;
+		border: 1px solid $glass-bg-border;
+		border-radius: rem(20);
+		padding: rem(28);
+
+		@media (min-width: $md-breakpoint-up) {
+			padding: rem(36);
+		}
+	}
+
+	.contact-form__header {
+		display: flex;
+		align-items: center;
+		gap: rem(16);
+		margin-bottom: rem(28);
+	}
+
+	.contact-form__header-icon {
+		width: rem(48);
+		height: rem(48);
+		border-radius: rem(12);
+		background: linear-gradient(to bottom right, $yellow, $red);
+		color: $white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		transform: rotate(-6deg);
+
+		svg {
+			width: rem(22);
+			height: rem(22);
+			transform: rotate(6deg);
+		}
+	}
+
+	.contact-form__header-text {
+		h2 {
+			font-size: rem(22);
+			margin-bottom: rem(4);
+
+			@media (min-width: $md-breakpoint-up) {
+				font-size: rem(26);
+			}
+		}
+
+		p {
+			font-size: rem(14);
+			margin-bottom: 0;
+		}
+	}
+
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: rem(20);
+	}
+
+	.contact-form__row {
+		display: grid;
+		gap: rem(20);
+
+		@media (min-width: $sm-breakpoint-up) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.contact-form__group {
+		display: flex;
+		flex-direction: column;
+		gap: rem(8);
+	}
+
+	.contact-form__input,
+	.contact-form__textarea {
+		background: $glass-bg;
+		border: 1px solid $glass-bg-border;
+		border-radius: rem(8);
+		padding: rem(14) rem(16);
+		font-family: $font-body;
+		font-size: rem(16);
+		color: $white;
+		width: 100%;
+		box-sizing: border-box;
+		outline: none;
+		transition: border-color $transition, background $transition;
+		appearance: none;
+
+		&::placeholder {
+			color: color.adjust($white, $alpha: -0.65);
+		}
+
+		&:focus {
+			border-color: color.adjust($yellow, $alpha: -0.5);
+			background: color.adjust($white, $alpha: -0.93);
+		}
+
+		&.has-error {
+			border-color: color.adjust($red, $alpha: -0.4);
+		}
+	}
+
+	.contact-form__textarea {
+		resize: none;
+		min-height: rem(128);
+		line-height: 1.6;
+	}
+
+	.contact-form__error {
+		display: none;
+		font-size: rem(13);
+		color: $bright-red;
+	}
+
+	.contact-form__group.has-error .contact-form__error {
+		display: block;
+	}
+
+	.contact-form__success {
+		display: none;
+		text-align: center;
+		padding: rem(48) rem(24);
+
+		h3 {
+			margin-bottom: rem(8);
+		}
+
+		p {
+			margin-bottom: 0;
+		}
+
+		&.visible {
+			display: block;
+		}
+	}
+
+	.contact__sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: rem(24);
+	}
+
+	.contact__promise {
+		position: relative;
+		overflow: hidden;
+		background: linear-gradient(135deg,
+			color.change($dark-red, $alpha: 0.15),
+			color.change($yellow, $alpha: 0.1),
+			color.change($dark-blue, $alpha: 0.15));
+		border: 1px solid color.adjust($yellow, $alpha: -0.6);
+		border-radius: rem(20);
+		padding: rem(28);
+		display: flex;
+		flex-direction: column;
+		gap: rem(20);
+		height: fit-content;
+
+		@media only screen and (min-width: $sm-breakpoint-up) {
+			flex-direction: row;
+		}
+	}
+
+	.contact__promise-icon {
+		width: rem(52);
+		height: rem(52);
+		border-radius: rem(14);
+		background: $yellow;
+		color: $slate;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+
+		svg {
+			width: rem(26);
+			height: rem(26);
+		}
+	}
+
+	.contact__promise-body {
+		h3 {
+			font-size: rem(18);
+			margin-bottom: rem(8);
+		}
+
+		p {
+			font-size: rem(14);
+			margin-bottom: rem(16);
+			line-height: 1.7;
+
+			strong {
+				color: $yellow;
+				font-weight: $font-weight-bold;
+			}
+		}
+	}
+
+	.contact__promise-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: rem(6);
+		background: color.adjust($white, $alpha: -0.9);
+		border: 1px solid color.adjust($white, $alpha: -0.82);
+		border-radius: rem(999);
+		padding: rem(5) rem(12);
+		font-size: rem(12);
+		font-weight: $font-weight-semibold;
+		color: $yellow;
+
+		svg {
+			width: rem(13);
+			height: rem(13);
+		}
+	}
+
+	.contact__social {
+		background: $glass-bg;
+		border: 1px solid $glass-bg-border;
+		border-radius: rem(16);
+		padding: rem(24);
+
+		h3 {
+			display: flex;
+			align-items: center;
+			gap: rem(8);
+			font-size: rem(16);
+			margin-bottom: rem(16);
+
+			svg {
+				width: rem(18);
+				height: rem(18);
+				color: $yellow;
+				flex-shrink: 0;
+			}
+		}
+	}
+
+	.contact__social-list {
+		display: flex;
+		flex-direction: column;
+		gap: rem(10);
+
+		@media (min-width: $md-breakpoint-up) {
+			flex-direction: row;
+		}
+
+		@media (min-width: $lg-breakpoint-up) {
+			flex-direction: column;
+		}
+	}
+
+	.contact__social-link {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: rem(12);
+		padding: rem(12);
+		background: color.adjust($white, $alpha: -0.95);
+		border-radius: rem(12);
+		transition: background $transition;
+		flex: 1;
+
+		&:hover {
+			background: color.adjust($white, $alpha: -0.9);
+		}
+
+		&[data-platform="instagram"] .contact__social-icon::before {
+			background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+		}
+
+		&[data-platform="tiktok"] .contact__social-icon::before {
+			background: linear-gradient(135deg, $tiktok-cyan, $tiktok-red);
+		}
+
+		&[data-platform="facebook"] .contact__social-icon::before {
+			background: linear-gradient(135deg, $blue, $dark-blue);
+		}
+
+		&:hover .contact__social-icon::before {
+			opacity: 1;
+		}
+	}
+
+	.contact__social-icon {
+		position: relative;
+		isolation: isolate;
+		width: rem(40);
+		height: rem(40);
+		border-radius: rem(10);
+		background: color.adjust($white, $alpha: -0.9);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		transition: all $transition;
+
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			z-index: -1;
+			opacity: 0;
+			transition: opacity $transition;
+		}
+
+		svg {
+			width: rem(20);
+			height: rem(20);
+			color: $white;
+		}
+	}
+
+	.contact__social-name {
+		font-size: rem(15);
+		font-weight: $font-weight-semibold;
+		color: $white;
+		margin-bottom: 0;
+		line-height: 1.3;
+	}
+
+	.contact__social-handle {
+		font-size: rem(13);
+		color: color.adjust($white, $alpha: -0.5);
+		margin-bottom: 0;
+		line-height: 1.3;
+	}
+}

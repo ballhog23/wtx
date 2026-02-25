@@ -1,11 +1,102 @@
 extends ../layouts/base
 
 block head
-    link(rel="stylesheet" href="/css/pages/index.css")
-    script(type="module" src="/js/index.js")
+	link(rel="stylesheet" href="/css/pages/index.css")
+	script(type="module" src="/js/index.js")
 
 block content
-    main
-        header.page-header.container
-                h1 COLLECT THE<br /><span>EXTRAORDINARY</span>
-                a.btn this is a button
+	include ../mixins/icons
+	include ../mixins/slider
+	main
+		section.hero
+			.hero__orbs(aria-hidden="true")
+				span
+				span
+				span
+			.container
+				.hero__content
+					p.hero__eyebrow
+						+iconZap()
+						| DFW's Premier Card Shop
+					h1
+						| COLLECT THE
+						br
+						span.text-gradient-glow EXTRAORDINARY
+					p.hero__lead From rookie cards to rare Pokémon, vintage sports memorabilia to modern grails — your next legendary find awaits.
+					.hero__actions
+						a.btn.btn--primary(href="/about")
+							+iconTrophy()
+							| Discover Our Story
+						a.btn.btn--outline(href="/contact") Get In Touch
+					.hero__stats
+						.hero__stat
+							strong 10K+
+							span Cards in Stock
+						.hero__stat
+							strong.hero__stat--red 500+
+							span Happy Collectors
+						.hero__stat
+							strong.hero__stat--yellow 5★
+							span Customer Rating
+				.hero__cards
+					.hero__card-fan
+						.hero__card.hero__card--left
+							.hero__card-inner
+								img(src="/assets/ceedee.jpg" alt="football cards")
+							.hero__card-overlay
+							span.hero__card-label FOOTBALL
+						.hero__card.hero__card--center
+							.hero__card-inner
+								img(src="/assets/pokemon.png" alt="Pokemon Cards")
+							.hero__card-overlay
+							+iconStar()
+							span.hero__card-label POKÉMON
+						.hero__card.hero__card--right
+							.hero__card-inner
+								img(src="/assets/steve-nash.jpg" alt="Basketball cards")
+							.hero__card-overlay
+							span.hero__card-label BASKETBALL
+
+		- const slides = [{ image: 'https://picsum.photos/seed/baseball/600/400', alt: 'Baseball Legends', badge: 'Sports Cards', title: 'Baseball Legends', description: 'Rookie cards, vintage finds, and modern hits from the greatest.', href: '/collections/baseball', btnText: 'View Collection' }, { image: 'https://picsum.photos/seed/pokemon/600/400', alt: 'Pokemon TCG', badge: 'Pokemon', title: 'Pokemon TCG', description: 'From Base Set holographics to modern secret rares.', href: '/collections/pokemon', btnText: 'View Collection' }, { image: 'https://picsum.photos/seed/football/600/400', alt: 'Football Cards', badge: 'Football', title: 'Football Cards', description: 'NFL stars past and present, rookie cards, and memorabilia.', href: '/collections/football', btnText: 'View Collection' }, { image: 'https://picsum.photos/seed/basketball/600/400', alt: 'Basketball Cards', badge: 'Basketball', title: 'Basketball Cards', description: 'From Jordan to Giannis, legends of the hardwood, in your hands.', href: '/collections/basketball', btnText: 'View Collection' }, { image: 'https://picsum.photos/seed/vintage/600/400', alt: 'Vintage and Memorabilia', badge: 'Vintage', title: 'Vintage & Memorabilia', description: 'Rare finds, signed pieces, and treasures from the golden era of sports.', href: '/collections/vintage', btnText: 'View Collection' }]
+		- const pills = [{ label: 'Sports Cards', href: '/collections/sports' }, { label: 'Pokemon TCG', href: '/collections/pokemon' }, { label: 'Football Cards', href: '/collections/football' }, { label: 'Basketball Cards', href: '/collections/basketball' }, { label: 'Vintage & Memorabilia', href: '/collections/vintage' }]
+
+		section.collections
+			.container
+				header.section-header
+					p.section-header__eyebrow
+						+iconStar()
+						| Our Collections
+					h2 EXPLORE THE #[span LINEUP]
+					p Our curated collections — from sports legends to anime heroes.
+				+slider(slides)
+				nav.collections__pills(aria-label="Browse by category")
+					each pill in pills
+						a.pill(href=pill.href) #{pill.label}
+
+		include ../partials/social.pug
+
+		section.about
+			.container
+				.about__images
+					.card-glow
+					img(src="https://picsum.photos/seed/store1/400/400" alt="Inside the store")
+					img(src="https://picsum.photos/seed/cards1/400/400" alt="Card collection")
+					img.about__images--wide(src="https://picsum.photos/seed/collection1/800/400" alt="Our collection")
+				.about__content
+					p.section-header__eyebrow
+						+iconStar()
+						| Our Story
+					h2 PASSION MEETS<span> EXPERTISE</span>
+					p Born from a love of the game and the thrill of the hunt, WTX Wax Collectibles is more than a card shop — it's a community hub for collectors of all ages and experience levels.
+					p Whether you're chasing that elusive rookie card, completing your Pokémon set, or hunting for vintage treasures, we've got you covered.
+					ul.about__tags
+						li Sports Cards
+						li Pokémon
+						li Trading Cards
+						li Memorabilia
+						li Grading Services
+					a.btn.btn--primary(href="/about") Learn More About Us
+
+		include ../partials/location.pug
+
+		include ../partials/cta.pug

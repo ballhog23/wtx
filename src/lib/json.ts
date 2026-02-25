@@ -1,6 +1,6 @@
 import type { Response } from 'express';
 
-export async function respondWithJSON(
+export function respondWithJSON(
 	res: Response,
 	statusCode: number,
 	payload: any
@@ -10,7 +10,7 @@ export async function respondWithJSON(
 	res.status(statusCode).send(body);
 }
 
-export async function respondWithError(
+export function respondWithError(
 	res: Response,
 	statusCode: number,
 	message: string

@@ -3,6 +3,7 @@
 @use 'sass:color';
 @use './components/navbar';
 @use './components/nav-overlay';
+@use './components/footer';
 
 html {
     &.overlay-nav-open {
@@ -13,7 +14,7 @@ html {
 html,
 body {
     all: unset;
-    background-color: $black;
+    background-color: $slate;
     color: $black;
     font-size: 1rem;
     line-height: 1;
@@ -27,6 +28,7 @@ body {
     position: relative;
     padding: 0;
     margin: 0;
+    overflow-x: hidden;
 }
 
 // webkit scrollbar (Safari, older Chrome/Edge)
@@ -37,8 +39,8 @@ body {
 }
 
 main {
+    padding-block: 0;
     margin-block: rem(81) 0;
-    padding-block: rem(50) 0;
     background-color: transparent;
 }
 
@@ -140,13 +142,24 @@ label {
 }
 
 img {
-    width: 10rem;
+    max-width: 100%;
     display: block;
     object-fit: cover;
 }
 
+.card-glow {
+    position: absolute;
+    inset: rem(-24);
+    border-radius: rem(40);
+    background: $card-glow-gradient;
+    filter: blur(rem(40));
+    opacity: 0.7;
+    z-index: -1;
+    pointer-events: none;
+}
+
 .container {
-    max-width: 62.5rem;
+    max-width: rem(1200);
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -155,8 +168,22 @@ header {
     margin-bottom: 2rem;
 }
 
+section {
+    padding-block: rem(100);
+    padding-inline: 0;
+    margin: 0;
+
+    &:not(.hero) {
+        padding-block: rem(50) rem(100);
+    }
+
+    &:has(> .container .card-glow) {
+        overflow-x: clip;
+    }
+}
+
 a {
-    color: $text-muted;
+    color: $yellow;
     text-decoration: none;
     transition: color $transition;
 
@@ -165,9 +192,11 @@ a {
     }
 }
 
-.btn {
-    font-family: $font-body;
-    font-weight: $font-weight-normal;
-    padding-block: 1.5rem;
-    padding-inline: 2rem;
+.text-gradient-glow {
+    display: inline-block;
+    color: transparent;
+    background-image: $text-gradient-glow;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

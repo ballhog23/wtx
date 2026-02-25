@@ -1,0 +1,146 @@
+extends ../layouts/base
+
+block head
+	link(rel="stylesheet" href="/css/pages/contact.css")
+	script(type="module" src="/js/contact.js")
+
+block content
+	include ../mixins/icons
+	main
+		section.hero
+			.hero__orbs
+				span
+				span
+			.container
+				span.hero__eyebrow
+					+iconSparkles()
+					| LET'S FIND YOUR TREASURE!
+				h1 YOUR NEXT #[span.text-gradient-glow GRAIL] AWAITS
+				p
+					| Hunting for that&nbsp;
+					span.accent-yellow specific card
+					| ? Chasing a&nbsp;
+					span.accent-red rookie gem
+					| ? Looking for&nbsp;
+					span.accent-blue vintage treasures
+					| ? We can help!
+
+		section.contact
+			.container
+				.contact__grid
+					div
+						.contact__form-card
+							.card-glow
+							.contact-form__header
+								.contact-form__header-icon
+									+iconSend()
+								.contact-form__header-text
+									h2 Send Us a Message
+									p Tell us what you're hunting for.
+							form.contact-form
+								.contact-form__row
+									.contact-form__group
+										label(for="contact-name") Your Name
+										input.contact-form__input(
+											type="text"
+											id="contact-name"
+											name="name"
+											placeholder="John Doe"
+											required
+											minlength="2"
+											maxlength="50"
+											autocomplete="name"
+										)
+										span.contact-form__error Please enter your name, between 2 and 50 characters.
+									.contact-form__group
+										label(for="contact-email") Email Address
+										input.contact-form__input(
+											type="email"
+											id="contact-email"
+											name="email"
+											placeholder="john@example.com"
+											required
+											minlength="5"
+											maxlength="50"
+											autocomplete="email"
+										)
+										span.contact-form__error Invalid email format. Use format: example@domain.com
+								.contact-form__row
+									.contact-form__group
+										label(for="contact-phone") Phone (Optional)
+										input.contact-form__input(
+											type="tel"
+											id="contact-phone"
+											name="phone"
+											placeholder="4325551234"
+											minlength="10"
+											maxlength="10"
+											pattern="^\\d{10}$"
+											autocomplete="tel"
+										)
+										span.contact-form__error Invalid phone format. Use format: 1231231234
+									.contact-form__group
+										label(for="contact-subject") Subject
+										input.contact-form__input(
+											type="text"
+											id="contact-subject"
+											name="subject"
+											placeholder="Looking for specific cards"
+											required
+											minlength="5"
+											maxlength="50"
+										)
+										span.contact-form__error Please enter a subject, between 5 and 50 characters.
+								.contact-form__group
+									label(for="contact-message") Your Message
+									textarea.contact-form__textarea(
+										id="contact-message"
+										name="message"
+										rows="5"
+										placeholder="Tell us about that card you're hunting — rookie year, player name, set, PSA grade — we want all the details."
+										required
+										minlength="10"
+										maxlength="500"
+									)
+									span.contact-form__error Please enter a message, between 10 and 500 characters.
+								button.btn.btn--primary.btn--block(type="submit")
+									+iconNavigation()
+									| Send Message
+							.contact-form__success
+								h3 Message Sent
+								p Thanks for reaching out — we'll be in touch soon.
+					.contact__sidebar
+						.contact__promise
+							.contact__promise-icon
+								+iconSparkles()
+							.contact__promise-body
+								h3 Our Hunt Promise
+								p Tell us about the #[strong specific card or collectible] you're after — rookie year, player name, set, grade — and #[strong we're on the hunt with you.]
+								.contact__promise-badge
+									+iconClock()
+									| Quick Response &middot; 24HR Turnaround
+						.contact__social
+							h3
+								+iconSparkles()
+								| Follow Us on Social Media
+							.contact__social-list
+								a.contact__social-link(href="https://instagram.com/wtxwaxcollectibles" target="_blank" rel="noopener noreferrer" data-platform="instagram")
+									.contact__social-icon
+										+iconInstagram()
+									div
+										p.contact__social-name Instagram
+										p.contact__social-handle @wtxwaxcollectibles
+								a.contact__social-link(href="https://tiktok.com/@wtxwaxcollectibles" target="_blank" rel="noopener noreferrer" data-platform="tiktok")
+									.contact__social-icon
+										+iconTiktok()
+									div
+										p.contact__social-name TikTok
+										p.contact__social-handle @wtxwaxcollectibles
+								a.contact__social-link(href="https://facebook.com/wtxwaxcollectibles" target="_blank" rel="noopener noreferrer" data-platform="facebook")
+									.contact__social-icon
+										+iconFacebook()
+									div
+										p.contact__social-name Facebook
+										p.contact__social-handle WTX Wax Collectibles
+
+		include ../partials/location.pug

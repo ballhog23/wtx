@@ -1,0 +1,89 @@
+extends ../layouts/base
+
+block head
+	link(rel="stylesheet" href="/css/pages/about.css")
+
+block content
+	include ../mixins/icons
+	main
+		section.hero
+			.hero__orbs(aria-hidden="true")
+				span
+				span
+			.container
+				.hero__content
+					p.hero__eyebrow
+						+iconSparkles()
+						| Our Story
+					h1
+						| BUILT BY COLLECTORS,
+						br
+						span.text-gradient-glow FOR COLLECTORS
+					p.hero__lead From a childhood love of trading cards to West Texas's premier collectibles destination — this is our story.
+
+		section.story
+			.container
+				.story__grid
+					.story__images
+						.card-glow
+						.story__images-col
+							img(src="https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&q=80" alt="Sports cards")
+							img(src="https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?w=400&q=80" alt="Pokemon cards")
+						.story__images-col.story__images-col--offset
+							img(src="https://images.unsplash.com/photo-1511193311914-0346f16efe90?w=400&q=80" alt="Vintage collectibles")
+							img(src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=400&q=80" alt="Collection display")
+					.story__content
+						h2 WHO #[span WE ARE]
+						p
+							strong WTX Wax Collectibles
+							|  is West Texas's premier destination for sports cards, Pokémon TCG, and rare collectibles. Based in Midland, TX, we're a tight-knit team of three passionate collectors who turned our lifelong hobby into a thriving business.
+						p Whether you're chasing rookie gems, vintage treasures, or your next grail card — we're here to help you find it. From authentication to community events, we're more than just a shop; we're your partners in the hunt.
+						.story__mission
+							.story__mission-icon
+								+iconTarget()
+							div
+								h3 Our Mission
+								p To create the ultimate collecting experience in West Texas — where authenticity meets passion, and every customer becomes part of our collecting family. We believe in fair prices, honest grading, and the thrill of the hunt.
+
+		- const teamMembers = [{ name: 'John Martinez', role: 'Founder & Lead Buyer', specialty: 'Vintage & Graded Cards', bio: '30+ years collecting experience. Expert in vintage sports cards and Pokémon TCG. If it\'s rare, John knows how to find it.', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&q=80' }, { name: 'Sarah Chen', role: 'Store Manager', specialty: 'Authentication & Customer Service', bio: 'Former card grader with authentication expertise. Passionate about helping new collectors start their journey the right way.', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&q=80' }, { name: 'Marcus Thompson', role: 'Social Media & Events', specialty: 'Community & Live Events', bio: 'The heartbeat of our community. Runs breaks, tournaments, and keeps our social platforms buzzing with the latest drops.', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&q=80' }]
+
+		section.team
+			.container
+				header.section-header
+					p.section-header__eyebrow
+						+iconUsers()
+						| The Team
+					h2 MEET THE #[span TEAM]
+					p Three collectors with one mission: help you find your next treasure.
+				.team__grid
+					each member in teamMembers
+						.team__member
+							.team__member-image
+								.card-glow
+								img(src=member.img alt=member.name)
+								.team__member-badge
+									+iconZap()
+									span= member.specialty
+							.team__member-info
+								h3= member.name
+								p.team__member-role= member.role
+								p= member.bio
+
+		- const values = [{ title: 'Passion First', description: 'We\'re collectors too. Every card we sell, we\'d be proud to own ourselves.', icon: 'star' }, { title: 'Quality Guaranteed', description: 'Authentic products, accurate grading, and honest descriptions — always.', icon: 'trophy' }, { title: 'Community Focused', description: 'More than a shop — we\'re building a home for collectors of all levels.', icon: 'users' }, { title: 'Fair Pricing', description: 'Competitive prices that respect both the hobby and your wallet.', icon: 'target' }]
+
+		section.values
+			.container
+				header.section-header
+					h2 WHAT WE #[span STAND FOR]
+					p These principles guide everything we do.
+				.values__grid
+					each val in values
+						.value-card
+							.value-card__icon
+								+icon(val.icon)
+							h3= val.title
+							p= val.description
+
+		include ../partials/location.pug
+
+		include ../partials/cta.pug

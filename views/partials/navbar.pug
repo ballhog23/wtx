@@ -1,16 +1,18 @@
 - const isCurrentPage = (pageName) => page === pageName ? 'current-page' : ''
 
 nav.navbar
-    .container
-        a.brand(href="/") UPDATE
-        ul.nav-links
-            li
-                a.nav-link(href="/" class= isCurrentPage('index')) Home
-            li
-                a.nav-link(href="/about" class= isCurrentPage('about')) About
-            li
-                a.nav-link(href="/contact" class= isCurrentPage('contact')) Contact
-        button.hamburger(type="button" aria-label="Toggle navigation")
-            span
-            span
-            span
+	.container
+		a.brand(href="/")
+			span.brand__name WTX WAX
+			span.brand__sub Collectibles
+		ul.nav-links
+			li
+				a.nav-link(href="/" class= isCurrentPage('index')) Home
+			li
+				a.nav-link(href="/about" class= isCurrentPage('about')) About
+			li
+				a.nav-link.nav-link--cta(href="/contact" class= isCurrentPage('contact')) Contact
+		button.hamburger(type="button" aria-label="Toggle navigation")
+			span
+			span
+			span

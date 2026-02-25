@@ -6,6 +6,7 @@ cdk.context.json
 .mcp.json
 *.pem
 *.key
+commands.txt
 
 
 # Logs
