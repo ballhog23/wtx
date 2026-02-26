@@ -6,7 +6,14 @@ import type { Request, Response, NextFunction } from 'express';
 
 const validateContactForm = (req: Request, res: Response, next: NextFunction): Response | void => {
     const { body } = req;
+    const company = body.company;
+
+    // end user will never fill out this field, honeypot
+    if (typeof company === 'string' && company !== "")
+        return respondWithJSON(res, 200, { message: 'Yeah man, the email was totally sent dude!' });
+
     const validatedInput = contactFormSchema.safeParse(body);
+
 
     if (validatedInput.success) {
         req.validatedContactFormInput = validatedInput.data;

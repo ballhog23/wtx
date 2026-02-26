@@ -8,11 +8,27 @@
 // ── Hero (contact variant) ────────────────────────────────────────────────────
 
 @keyframes twinkle {
-	0%, 100% { opacity: 1; }
-	20% { opacity: 0.15; }
-	40% { opacity: 0.9; }
-	65% { opacity: 0.1; }
-	80% { opacity: 1; }
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	20% {
+		opacity: 0.15;
+	}
+
+	40% {
+		opacity: 0.9;
+	}
+
+	65% {
+		opacity: 0.1;
+	}
+
+	80% {
+		opacity: 1;
+	}
 }
 
 section.hero {
@@ -175,6 +191,14 @@ section.contact {
 		gap: rem(20);
 	}
 
+	input[name="company"] {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
 	.contact-form__row {
 		display: grid;
 		gap: rem(20);
@@ -263,9 +287,9 @@ section.contact {
 		position: relative;
 		overflow: hidden;
 		background: linear-gradient(135deg,
-			color.change($dark-red, $alpha: 0.15),
-			color.change($yellow, $alpha: 0.1),
-			color.change($dark-blue, $alpha: 0.15));
+				color.change($dark-red, $alpha: 0.15),
+				color.change($yellow, $alpha: 0.1),
+				color.change($dark-blue, $alpha: 0.15));
 		border: 1px solid color.adjust($yellow, $alpha: -0.6);
 		border-radius: rem(20);
 		padding: rem(28);

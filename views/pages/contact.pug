@@ -103,9 +103,16 @@ block content
 										maxlength="500"
 									)
 									span.contact-form__error Please enter a message, between 10 and 500 characters.
+								input(
+									type="text"
+									name="company"
+									tabindex="-1"
+									autocomplete="one-time-code"
+									aria-hidden="true"
+								)
 								button.btn.btn--primary.btn--block(type="submit")
-									+iconNavigation()
-									| Send Message
+										+iconNavigation()
+										| Send Message
 							.contact-form__success
 								h3 Message Sent
 								p Thanks for reaching out — we'll be in touch soon.

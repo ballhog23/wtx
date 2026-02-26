@@ -4,7 +4,7 @@ export type ContactFormFieldDefinition = {
     minLength: number;
     maxLength: number;
     regex: RegExp | null;
-    optional?: boolean;
+    optional: boolean;
 };
 
 export type ContactFormFieldError = Pick<ContactFormFieldDefinition, "name" | "errorMessage">;
@@ -55,5 +55,13 @@ export const contactFormFieldsDefinition: Record<string, ContactFormFieldDefinit
         maxLength: 500,
         regex: null,
         optional: false
+    },
+    company: {
+        name: 'company',
+        errorMessage: '',
+        minLength: 0,
+        maxLength: 0,
+        regex: null,
+        optional: true
     },
 };

@@ -5,7 +5,6 @@ export function initNavbarTransparency(): void {
     if (!navbar || !hero) return;
 
     const navbarHeight = navbar.offsetHeight;
-    console.log('navB height', navbarHeight);
     let isScrolled = false;
 
     const onScroll = () => {

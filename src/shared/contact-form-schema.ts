@@ -4,14 +4,18 @@ import { contactFormFieldsDefinition } from "./contact-form-definition.js";
 
 const { name, email, phone, subject, message } = contactFormFieldsDefinition;
 
+const companyInput = z.string()
+    .refine(val => val.length === 0, { error: 'Invalid submission' })
+    .optional();
+
 const stripDangerousChars = (val: string) => val.replace(/[\r\n\0]/g, '');
 
 const encodeHTMLEntities = (val: string) =>
     val.replace(/&/g, '&amp;')
-       .replace(/</g, '&lt;')
-       .replace(/>/g, '&gt;')
-       .replace(/"/g, '&quot;')
-       .replace(/'/g, '&#x27;');
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
 
 const nameError = { error: name.errorMessage };
 const nameInput =
@@ -72,7 +76,8 @@ export const contactFormSchema = z.strictObject({
     email: emailInput,
     phone: phoneInput,
     subject: subjectInput,
-    message: messageInput
+    message: messageInput,
+    company: companyInput,
 });
 
 export type ContactFormSchema = z.infer<typeof contactFormSchema>;
